@@ -1,0 +1,51 @@
+import React, { useState } from 'react';
+import 'react-native-gesture-handler';
+import { View, Text, StyleSheet, TouchableOpacity, TextInput, FlatList, Alert, ImageBackground, Image, ScrollView } from 'react-native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { NavigationContainer } from '@react-navigation/native';
+
+// Screens
+import LearnScreen from './LearnScreen';
+import LoginScreen from './LoginScreen';
+import SignupScreen from './SignupScreen';
+
+const Stack = createStackNavigator();
+
+export default function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator
+        initialRouteName="Login"
+        screenOptions={{
+          headerStyle: {
+            backgroundColor: '#3498db',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}
+      >
+        <Stack.Screen 
+          name="Login" 
+          component={LoginScreen} 
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen 
+          name="Signup" 
+          component={SignupScreen} 
+          options={{ title: 'Create Account' }}
+        />
+        <Stack.Screen 
+          name="Home" 
+          component={HomeScreen} 
+          options={{ headerLeft: null, title: 'Finance Buddy' }}
+        />
+        <Stack.Screen name="Learn" component={LearnScreen} options={{ title: 'Learn Finance' }} />
+        <Stack.Screen name="Plan" component={PlanScreen} options={{ title: 'Goal Planner' }} />
+        <Stack.Screen name="Fraud" component={FraudScreen} options={{ title: 'Fraud Alerts' }} />
+        <Stack.Screen name="Chat" component={ChatScreen} options={{ title: 'FinGenie AI' }} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
