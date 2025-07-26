@@ -4,38 +4,8 @@ import { View, Text, StyleSheet, TouchableOpacity, TextInput, Button, FlatList, 
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import LearnScreen from './LearnScreen';
-// ... (previous imports)
 import LoginScreen from './LoginScreen';
 import SignupScreen from './SignupScreen';
-
-export default function App() {
-  return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="Login">
-        <Stack.Screen 
-          name="Login" 
-          component={LoginScreen} 
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen 
-          name="Signup" 
-          component={SignupScreen} 
-          options={{ title: 'Create Account' }}
-        />
-        <Stack.Screen 
-          name="Home" 
-          component={HomeScreen} 
-          options={{ headerLeft: null }} // Hide back button on Home
-        />
-        {/* Keep your existing screens below */}
-        <Stack.Screen name="Learn" component={LearnScreen} />
-        <Stack.Screen name="Plan" component={PlanScreen} />
-        <Stack.Screen name="Fraud" component={FraudScreen} />
-        <Stack.Screen name="Chat" component={ChatScreen} />
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
-}
 
 // 1. Enhanced Home Screen with Background Image and Better Styling
 function HomeScreen({ navigation }) {
@@ -326,7 +296,7 @@ function ChatScreen() {
 // Navigation Setup
 const Stack = createStackNavigator();
 
-export default function App() {
+function MainApp() {
   return (
     <NavigationContainer>
       <Stack.Navigator
@@ -339,11 +309,22 @@ export default function App() {
             fontWeight: 'bold',
           },
         }}
+        initialRouteName="Login"
       >
+        <Stack.Screen 
+          name="Login" 
+          component={LoginScreen} 
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen 
+          name="Signup" 
+          component={SignupScreen} 
+          options={{ title: 'Create Account' }}
+        />
         <Stack.Screen 
           name="Home" 
           component={HomeScreen} 
-          options={{ title: 'Finance Buddy' }}
+          options={{ headerLeft: null }} // Hide back button on Home
         />
         <Stack.Screen 
           name="Learn" 
@@ -655,3 +636,5 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 });
+
+export default MainApp;
